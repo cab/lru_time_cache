@@ -82,12 +82,14 @@
     variant_size_differences
 )]
 
+#[cfg(all(target_arch = "wasm32", not(feature = "sn_fake_clock")))]
+use instant::Instant;
 #[cfg(feature = "sn_fake_clock")]
 use sn_fake_clock::FakeClock as Instant;
 use std::borrow::Borrow;
 use std::collections::{BTreeMap, VecDeque};
 use std::time::Duration;
-#[cfg(not(feature = "sn_fake_clock"))]
+#[cfg(all(not(feature = "sn_fake_clock"), not(target_arch = "wasm32")))]
 use std::time::Instant;
 use std::usize;
 

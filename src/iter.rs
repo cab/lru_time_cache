@@ -9,12 +9,9 @@
 
 //! Misc LRU cache iterators.
 
-#[cfg(feature = "sn_fake_clock")]
-use sn_fake_clock::FakeClock as Instant;
+use crate::Instant;
 use std::collections::{BTreeMap, VecDeque};
 use std::time::Duration;
-#[cfg(not(feature = "sn_fake_clock"))]
-use std::time::Instant;
 
 /// An iterator over an `LruCache`'s entries that updates the timestamps as values are traversed.
 /// Values are produced in the most recently used order.
